@@ -2,8 +2,13 @@
 
 @theme {
     --primary: #5f6FFF;
+    --auto: repeat(auto-fill, minmax(200px, 1fr));
   }
   
   .active hr{
     @apply block;
+  }
+
+  ::-webkit-scrollbar{
+    @apply hidden;
   }
