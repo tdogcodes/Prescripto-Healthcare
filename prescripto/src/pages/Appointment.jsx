@@ -7,72 +7,71 @@ const Appointment = () => {
 
   const { docId } = useParams()
   const { doctors, currencySymbol } = useContext(AppContext)
+  const daysOfWeek = ['SUN','MON','TUE','WED','THU','FRI','SAT']
 
-  const [ docInfo, setDocInfo ] = useState(null)
-  const [ docSlots, setDocSlots ] = useState([])
-  const [ slotIndex, setSlotIndex ] = useState(0)
-  const [ slotTime, setSlotTime ] = useState('')
+  const [docInfo, setDocInfo] = useState(null);
+  const [docSlots, setDocSlots] = useState([]);
+  const [slotIndex, setSlotIndex] = useState(0);
+  const [slotTime, setSlotTime] = useState('');
 
   const fetchDocInfo = async () => {
-    const docInfo = doctors.find(doc => doc._id === docId)
-    setDocInfo(docInfo)
-  }
+    const docInfo = doctors.find(doc => doc._id === docId);
+    setDocInfo(docInfo);
+  };
 
-  const getAvailableSlots = async () =>{
-    setDocSlots([])
-    // getting current date
-    let today = new Date()
-    for(let i = 0; i < 7; i++){
+  const getAvailableSlots = async () => {
+    if (!docInfo) return;
 
-      // getting date with index
-      let currentDate = new Date(today)
-      currentDate.setDate(today.getDate() + 1)
+    let today = new Date();
+    let allSlots = [];
 
-      // setting end time of the date with index
-      let endTime = new Date()
-      endTime.setDate(today.getDate() + 1)
-      endTime.setHours(21,0,0,0)
+    for (let i = 1; i < 8; i++) {
+      let currentDate = new Date(today);
+      currentDate.setDate(today.getDate() + i);
 
-      //setting appointment hours
-      if(today.getDate() === currentDate.getDate()){
-        currentDate.setHours(currentDate.getHours() > 10 ? currentDate.getHours() + 1 : 10)
-        currentDate.setMinutes(currentDate.getMinutes() > 30 ? 30 : 0)
+      let endTime = new Date(currentDate);
+      endTime.setHours(21, 0, 0, 0);
+
+      if (i === 0) {
+        // If it's today, start from the current time + 1 hour
+        currentDate.setHours(currentDate.getHours() + 1);
+        currentDate.setMinutes(currentDate.getMinutes() > 30 ? 30 : 0);
       } else {
-        //earliest appointment availability, start of new day
-        currentDate.setHours(10)
-        currentDate.setMinutes(0)
+        // For future days, start from 10:00 AM
+        currentDate.setHours(10, 0, 0, 0);
       }
 
-      let timeSlots = []
+      let timeSlots = [];
 
-      while(currentDate < endTime){
-        let formattedTime = currentDate.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' })
+      while (currentDate < endTime) {
+        let formattedTime = currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-        //add slot to array
         timeSlots.push({
           datetime: new Date(currentDate),
-          time: formattedTime
-        })
+          time: formattedTime,
+        });
 
-        //increment time by 30 minutes
-        currentDate.setMinutes(currentDate + 30)
+        // Increment time by 30 minutes
+        currentDate.setMinutes(currentDate.getMinutes() + 30);
       }
-      setDocSlots(prev => ([...prev, timeSlots]))
+
+      allSlots.push(timeSlots);
     }
 
-  }
+    setDocSlots(allSlots);
+  };
 
-  useEffect(()=>{
-    fetchDocInfo()
-  },[doctors,docId])
+  useEffect(() => {
+    fetchDocInfo();
+  }, [doctors, docId]);
 
-  useEffect(()=>{
-    getAvailableSlots()
-  },[docInfo])
+  useEffect(() => {
+    getAvailableSlots();
+  }, [docInfo]);
 
-  useEffect(()=>{
-    console.log(docSlots)
-  },[docSlots])
+  useEffect(() => {
+    console.log(docSlots);
+  }, [docSlots]);
 
   return docInfo && (
     <div>
@@ -100,6 +99,29 @@ const Appointment = () => {
             Appointment fee: <span className='text-gray-500'>{currencySymbol}{docInfo.fees}</span>
           </p>
         </div>
+      </div>
+      <div className='sm:ml-72 sm:pl-4 mt-4 font-medium text-gray-700'>
+        <p>Booking slots</p>
+        <div className='flex max-sm:ml-7 gap-3 items-center w-full overflow-x-scroll flex-wrap mt-4'>
+          {docSlots.length && docSlots.map((item, i)=>(
+            <div onClick={()=> setSlotIndex(i)} className={`text-center py-6 min-w-16 rounded-full cursor-pointer 
+            ${slotIndex === i ? 'bg-[var(--primary)] text-white' : 'border border-gray-400'}`} key={item.datetime}>
+              <p>{item[0] && daysOfWeek[item[0].datetime.getDay()]}</p>
+              <p>{item[0] && item[0].datetime.getDate()}</p>
+            </div>
+          ))}
+        </div>
+        <div className='flex items-center gap-3 w-full overflow-x-scroll mt-4'
+         style={{maskImage: 'linear-gradient(to left, transparent, black 10%, black 100%, transparent)'}}>
+          {docSlots.length && docSlots[slotIndex].map((item)=> (
+            <p onClick={()=> setSlotTime(item.time)} className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full border cursor-pointer
+              ${item.time === slotTime ? 'bg-[var(--primary)] text-white' : 'text-gray-400'}`} key={item.datetime}>{
+              item.time.toLowerCase()
+            }</p>
+          ))}
+        </div>
+        <button className='bg-[var(--primary)] my-6 text-white px-8 py-3 rounded-full font-light 
+        cursor-pointer hover:scale-105 transition-all duration-300'>Book an appointment</button>
       </div>
     </div>
   )
