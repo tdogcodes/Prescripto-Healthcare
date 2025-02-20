@@ -4,8 +4,8 @@ import { assets } from '../assets/assets_frontend/assets'
 const About = () => {
   return (
     <div>
-        <div className='flex justify-center items-center p-6'>
-          <p className='text-3xl text-gray-600 font-medium mb-6'>ABOUT <span className='text-black'>US</span></p>
+        <div className='flex justify-center items-center p-6 text-center text-2xl pt-10 text-gray-500'>
+          <p className='mb-6'>ABOUT <span className='text-gray-700 font-semibold'>US</span></p>
         </div>
 
          <div className='flex max-sm:flex-col max-sm:items-center md:justify-around gap-6'>
@@ -25,16 +25,17 @@ const About = () => {
        </div>
        
         <span className='flex items-center justify-center py-12 text-2xl'> Why&nbsp;<span className='text-2xl text-gray-800 font-medium'>Choose Us?</span></span>
-          <div className='flex max-sm:flex-col justify-center items-center mx-9'>
-            <div className='border p-20 border-gray-300 hover:bg-[var(--primary)] hover:text-white transition-all duration-500 hover:scale-103'>
+
+          <div className='flex max-sm:flex-col justify-center items-center'>
+            <div className='border max-sm:h-60 md:h-80 lg:h-auto w-full p-20 border-gray-300 hover:bg-[var(--primary)] hover:text-white transition-all duration-500 hover:scale-103'>
               <span className='font-semibold'>EFFICIENCY:</span>
               <p className='pt-3'>Streamlined appointment scheduling that fits into your busy lifestyle.</p>
             </div>
-            <div className='border p-20 border-gray-300 hover:bg-[var(--primary)] hover:text-white transition-all duration-500 hover:scale-103'>
+            <div className='border max-sm:h-60 md:h-80 lg:h-auto w-full p-20 border-gray-300 hover:bg-[var(--primary)] hover:text-white transition-all duration-500 hover:scale-103'>
               <span className='font-semibold'>CONVENIENCE:</span>
               <p className='pt-3'>Access to a network of trusted healthcare professionals in your area.</p>
             </div>
-            <div className='border p-20 border-gray-300 hover:bg-[var(--primary)] hover:text-white transition-all duration-500 hover:scale-103'>
+            <div className='border max-sm:h-60 md:h-80 lg:h-auto w-full p-20 border-gray-300 hover:bg-[var(--primary)] hover:text-white transition-all duration-500 hover:scale-103'>
               <span className='font-semibold'>PERSONALIZATION:</span>
               <p className='pt-3'>Tailored recommendations and reminders to help you stay on top of your health.</p>
             </div>
