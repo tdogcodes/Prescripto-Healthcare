@@ -29,10 +29,10 @@ const Doctors = () => {
       <p className='text-3xl text-gray-600 font-medium'>Browse by the doctor's specialty.</p>
       <div className='flex flex-col md:flex-row items-start gap-5 mt-5'>
         {/* Left Side */}
-        <div className='flex flex-col gap-3 text-sm text-gray-600'>
+        <div className='flex flex-col max-sm:flex-row gap-3 text-sm text-gray-600 max-sm:px-2 max-sm:w-full overflow-scroll max-sm:py-4 max-sm:[mask-image:linear-gradient(to_right,transparent,black_3%,black_97%,transparent)]'>
           {specialityData.map((item)=>(
-            <div className={`w-[9vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300
-              rounded-lg transition-all hover:scale-105 cursor-pointer ${item.speciality === speciality ? 'bg-blue-200 text-black' : ''}`}
+            <div className={`min-w-[9vw] flex pl-3 py-1.5 pr-16 border border-gray-300
+              rounded-lg transition-all hover:scale-105 cursor-pointer max-sm:flex-shrink-0 ${item.speciality === speciality ? 'bg-blue-200 text-black' : ''}`}
                key={item.speciality} onClick={()=> item.speciality === '' ? navigate('/doctors'): navigate(`/doctors/${item.speciality}`)}>{item.speciality}</div>
           ))}
         </div>

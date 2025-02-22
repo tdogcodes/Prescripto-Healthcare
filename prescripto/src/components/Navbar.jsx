@@ -45,6 +45,28 @@ const Navbar = () => {
             <button onClick={()=>navigate('/login')} className='bg-[var(--primary)] text-white px-8 py-3 rounded-full font-light 
             hidden md:block cursor-pointer'>Create account</button>
             }
+            <img onClick={()=> setShowMenu(!showMenu)} className='w-6 md:hidden' src={assets.menu_icon} alt="" />
+            {/* Mobile Menu */}
+            <div className={` ${ showMenu ? 'fixed w-full' : 'h-0 w-0' } md:hidden absolute right-0 bottom-0 top-0 z-30 overflow-hidden bg-white transition-all duration-450`}>
+                <div className='flex items-center justify-between px-5 py-6'>
+                    <img src={assets.logo} className='w-36' alt="" />
+                    <img onClick={()=> setShowMenu(!showMenu)} className='size-6' src={assets.cross_icon} alt="" />
+                </div>
+                <ul className='flex flex-col items-center mt-12 px-5 gap-4 font-medium'>
+                <NavLink to='/'>
+                    <li className='text-3xl hover:bg-[var(--primary)] inline-block hover:text-white transition-all p-4 rounded-lg'>Home</li>
+                </NavLink>
+                <NavLink to='/doctors'>
+                    <li className='text-3xl hover:bg-[var(--primary)] inline-block hover:text-white transition-all p-4 rounded-lg'>All Doctors</li>
+                </NavLink>
+                <NavLink to='/about'>
+                    <li className='text-3xl hover:bg-[var(--primary)] inline-block hover:text-white transition-all p-4 rounded-lg'>About</li>
+                </NavLink>
+                <NavLink to='/contact'>
+                    <li className='text-3xl hover:bg-[var(--primary)] inline-block hover:text-white transition-all p-4 rounded-lg'>Contact</li>
+                </NavLink>
+                </ul>
+            </div>
         </div>
     </nav>
   )
