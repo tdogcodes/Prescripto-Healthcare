@@ -16,7 +16,7 @@ const MyProfile = () => {
     dob: '07-14-1990',
   })
 
-  const [edit, setEdit] = useState(true)
+  const [edit, setEdit] = useState(false)
 
   return (
     <div>
@@ -25,18 +25,17 @@ const MyProfile = () => {
       </div>
       <div className='my-10 flex flex-col justify-center md:flex-row text-sm gap-16 mb-28'>
         <img className='w-full h-full max-w-[340px] max-md:m-auto rounded-lg' src={userdata.image} alt="profile image" />
-
-        <div className='flex flex-col justify-center max-md:items-center gap-3 text-gray-500'>
-          <div className='flex items-center gap-2'>
+        <div className='flex flex-col justify-center max-md:items-center text-gray-500'>
+          <div className='flex flex-col text-lg gap-3'>
+          <div className='flex items-center'>
             {edit ? <span><label className='text-sm text-[var(--primary)]' htmlFor='name'>Change Name </label> 
-              <input className='border border-gray-500 rounded-md mt-1 p-1' type='text' value={userdata.name} name='name' onChange={(e)=> setUserdata((prev)=>({...prev, name:e.target.value}))} /></span> :
+              <input className='border text-sm border-gray-500 rounded-md mt-1 p-1' type='text' value={userdata.name} name='name' onChange={(e)=> setUserdata((prev)=>({...prev, name:e.target.value}))} /></span> :
             <p className='text-2xl text-gray-800'>{userdata.name}</p>}
           </div><hr/>
-          <div className='flex flex-col text-lg gap-3'>
-            <p><p className='text-center'>{userdata.email}</p> <br/>             
+            <p className={'text-[var(--primary)] font-small'}>{userdata.email}</p>            
             {edit ? <span><label className='text-sm text-[var(--primary)]' htmlFor='phone'>Change Phone </label> 
             <input className='border text-sm border-gray-500 rounded-md mt-1 p-1' type='text' value={userdata.phone} name='phone' onChange={(e)=> setUserdata((prev)=>({...prev, phone:e.target.value}))} /></span> :
-            <p>{userdata.phone}</p>}</p>
+            <p>{userdata.phone}</p>}
             <hr/>
             <p>{edit ? <span><label className='text-sm text-[var(--primary)]'>Change Address </label> 
             <div className='flex sm:flex-col md:flex-row gap-1'>
@@ -47,19 +46,19 @@ const MyProfile = () => {
             <hr/>
             <div>{edit ? 
             <span><label className='text-sm text-[var(--primary)]' htmlFor='gender'>Change Gender </label> 
-            <select onClick={(e)=> setUserdata(prev => ({ ...prev, gender: e.target.value }))} className='mb-2 mr-4 rounded-md border border-gray-500'>
+            <select onClick={(e)=> setUserdata(prev => ({ ...prev, gender: e.target.value }))} name='gender' className='border text-sm border-gray-500 rounded-md mr-1 p-1'>
               <option className='text-sm border w-[130px] py-2'>Male</option>
               <option className='text-sm border w-[130px] py-2'>Female</option>
               <option className='text-sm border w-[130px] py-2'>Non-binary</option>
             </select></span> :
             <p>{userdata.gender}</p>}
-            <span>{ edit ? <input type='date' value={userdata.dob} onChange={(e)=> setUserdata(prev => ({ ...prev, dob: e.target.value }))}/> : <span>{userdata.dob}</span>}</span>
+            <span>{ edit ? <span><label className='text-sm text-[var(--primary)]' htmlFor='dob'> Dob </label><input className='border border-gray-500 p-1 text-sm rounded-md' type='date' value={userdata.dob} onChange={(e)=> setUserdata(prev => ({ ...prev, dob: e.target.value }))}/></span> : <span>{userdata.dob}</span>}</span>
             </div>
             <div className='flex justify-center'>
-              { edit  ? <button className='bg-[var(--primary)] text-white px-8 py-3 rounded-full font-light 
+              { edit  ? <button className='bg-[var(--primary)] text-white px-8 py-3 rounded-full font-light border-none 
         cursor-pointer hover:scale-105 transition-all duration-300' onClick={()=> setEdit(!edit)}>Save information</button> :
               <button className='bg-[var(--primary)] text-white px-8 py-3 rounded-full font-light 
-              cursor-pointer hover:scale-105 transition-all duration-300' onClick={()=> setEdit(!edit)}>Edit information</button>}
+              cursor-pointer hover:scale-105 transition-all duration-300 border-none' onClick={()=> setEdit(!edit)}>Edit information</button>}
             </div>
           </div>
         </div>

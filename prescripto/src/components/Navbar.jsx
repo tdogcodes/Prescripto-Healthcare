@@ -53,16 +53,16 @@ const Navbar = () => {
                     <img onClick={()=> setShowMenu(!showMenu)} className='size-6' src={assets.cross_icon} alt="" />
                 </div>
                 <ul className='flex flex-col items-center mt-12 px-5 gap-4 font-medium'>
-                <NavLink to='/'>
+                <NavLink onClick={()=> setShowMenu(!showMenu)} to='/'>
                     <li className='text-3xl hover:bg-[var(--primary)] inline-block hover:text-white transition-all p-4 rounded-lg'>Home</li>
                 </NavLink>
-                <NavLink to='/doctors'>
+                <NavLink onClick={()=> setShowMenu(!showMenu)} to='/doctors'>
                     <li className='text-3xl hover:bg-[var(--primary)] inline-block hover:text-white transition-all p-4 rounded-lg'>All Doctors</li>
                 </NavLink>
-                <NavLink to='/about'>
+                <NavLink onClick={()=> setShowMenu(!showMenu)} to='/about'>
                     <li className='text-3xl hover:bg-[var(--primary)] inline-block hover:text-white transition-all p-4 rounded-lg'>About</li>
                 </NavLink>
-                <NavLink to='/contact'>
+                <NavLink onClick={()=> setShowMenu(!showMenu)} to='/contact'>
                     <li className='text-3xl hover:bg-[var(--primary)] inline-block hover:text-white transition-all p-4 rounded-lg'>Contact</li>
                 </NavLink>
                 </ul>
