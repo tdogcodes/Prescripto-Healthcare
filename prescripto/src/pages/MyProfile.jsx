@@ -12,8 +12,8 @@ const MyProfile = () => {
       line1: '91234 Fairfax St',
       line2: '92637 Los Angeles, CA',
     },
-    gender: 'male',
-    dob: '07/14/1990',
+    gender: 'Male',
+    dob: '07-14-1990',
   })
 
   const [edit, setEdit] = useState(true)
@@ -31,10 +31,9 @@ const MyProfile = () => {
             {edit ? <span><label className='text-sm text-[var(--primary)]' htmlFor='name'>Change Name </label> 
               <input className='border border-gray-500 rounded-md mt-1 p-1' type='text' value={userdata.name} name='name' onChange={(e)=> setUserdata((prev)=>({...prev, name:e.target.value}))} /></span> :
             <p className='text-2xl text-gray-800'>{userdata.name}</p>}
-            <img onClick={()=> setEdit(!edit)} className='m-0 size-5' src={assets.edit_icon} alt="" />
           </div><hr/>
           <div className='flex flex-col text-lg gap-3'>
-            <p>{userdata.email} <br/>             
+            <p><p className='text-center'>{userdata.email}</p> <br/>             
             {edit ? <span><label className='text-sm text-[var(--primary)]' htmlFor='phone'>Change Phone </label> 
             <input className='border text-sm border-gray-500 rounded-md mt-1 p-1' type='text' value={userdata.phone} name='phone' onChange={(e)=> setUserdata((prev)=>({...prev, phone:e.target.value}))} /></span> :
             <p>{userdata.phone}</p>}</p>
@@ -44,19 +43,27 @@ const MyProfile = () => {
               <input className='border text-sm border-gray-500 rounded-md mt-1 p-1' type='text' value={userdata.address.line1} onChange={(e)=> setUserdata((prev)=>({...prev, address: { ...prev.address, line1: e.target.value }}))} />
               <input className='border text-sm border-gray-500 rounded-md mt-1 p-1' type='text' value={userdata.address.line2} onChange={(e)=> setUserdata((prev)=>({...prev, address: { ...prev.address, line2: e.target.value }}))} />
             </div></span> :
-            <p>{userdata.phone}</p>}</p>
+            <div><p>{userdata.address.line1}</p><p>{userdata.address.line2}</p></div>}</p>
             <hr/>
-            <p>{edit ? <span><label className='text-sm text-[var(--primary)]' htmlFor='gender'>Change Gender </label> 
-            <ul className='flex gap-1 mb-2'>
-              <li onClick={()=> setUserdata(prev => ({ ...prev, gender: 'male' }))} className='text-sm border w-[130px] py-2 rounded-lg text-center text-white bg-[var(--primary)] hover:scale-105 transition-all cursor-pointer'>Male</li>
-              <li onClick={()=> setUserdata(prev => ({ ...prev, gender: 'female' }))} className='text-sm border w-[130px] py-2 rounded-lg text-center text-white bg-[var(--primary)] hover:scale-105 transition-all cursor-pointer'>Female</li>
-              <li onClick={()=> setUserdata(prev => ({ ...prev, gender: 'non-binary' }))} className='text-sm border w-[130px] py-2 rounded-lg text-center text-white bg-[var(--primary)] hover:scale-105 transition-all cursor-pointer'>Non-binary</li>
-            </ul></span> :
+            <div>{edit ? 
+            <span><label className='text-sm text-[var(--primary)]' htmlFor='gender'>Change Gender </label> 
+            <select onClick={(e)=> setUserdata(prev => ({ ...prev, gender: e.target.value }))} className='mb-2 mr-4 rounded-md border border-gray-500'>
+              <option className='text-sm border w-[130px] py-2'>Male</option>
+              <option className='text-sm border w-[130px] py-2'>Female</option>
+              <option className='text-sm border w-[130px] py-2'>Non-binary</option>
+            </select></span> :
             <p>{userdata.gender}</p>}
-            <span className='max-sm:flex text-gray-600 max-sm:mt-2'>{userdata.dob}</span></p>
+            <span>{ edit ? <input type='date' value={userdata.dob} onChange={(e)=> setUserdata(prev => ({ ...prev, dob: e.target.value }))}/> : <span>{userdata.dob}</span>}</span>
+            </div>
+            <div className='flex justify-center'>
+              { edit  ? <button className='bg-[var(--primary)] text-white px-8 py-3 rounded-full font-light 
+        cursor-pointer hover:scale-105 transition-all duration-300' onClick={()=> setEdit(!edit)}>Save information</button> :
+              <button className='bg-[var(--primary)] text-white px-8 py-3 rounded-full font-light 
+              cursor-pointer hover:scale-105 transition-all duration-300' onClick={()=> setEdit(!edit)}>Edit information</button>}
+            </div>
           </div>
         </div>
-      </div>
+      </div> 
     </div>
   )
 }
