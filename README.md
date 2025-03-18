@@ -1,4 +1,4 @@
-Healthcare Platform - Prescripto Healthcare
+## Healthcare Platform - Prescripto Healthcare
 
 Overview
 A responsive React frontend for a healthcare platform that enables patients to schedule and manage appointments seamlessly.
