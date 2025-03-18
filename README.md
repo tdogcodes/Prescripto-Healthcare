@@ -9,7 +9,7 @@ Features
 - Responsive Design – Styled using Tailwind CSS for a smooth experience across devices.
 - Routing & Navigation – Utilized React Router for seamless page transitions.
 
-Tech Stack
+Tech Stack -
 React, JavaScript, Tailwind CSS, Clerk, React Router
 
 Setup
