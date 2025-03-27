@@ -17,6 +17,7 @@ const Appointment = () => {
 
   const fetchDocInfo = async () => {
     const docInfo = doctors.find(doc => doc._id === docId);
+      setDocInfo(null)
     setDocInfo(docInfo);
   };
 
@@ -63,7 +64,7 @@ const Appointment = () => {
   };
 
   useEffect(() => {
-    fetchDocInfo();
+      fetchDocInfo();
   }, [doctors, docId]);
 
   useEffect(() => {
