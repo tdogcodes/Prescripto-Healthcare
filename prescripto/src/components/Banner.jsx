@@ -16,7 +16,7 @@ const Banner = () => {
           <p>Book Appointments</p>
           <p>With 100+ Trusted Doctors</p>
         </div>
-        <button onClick={()=> {navigate('/login'); scrollTo(0,0)}} className='flex items-center gap-2 bg-white py-3 mt-6 
+        <button onClick={()=> {navigate('/login'); scrollTo(0,0)}} aria-label='create account' className='flex items-center gap-2 bg-white py-3 mt-6 
         px-8 rounded-full text-gray-600 md:mx-0 text-sm m-auto 
         hover:scale-105 transition-all duration-300'>Create Account</button>
       </div>

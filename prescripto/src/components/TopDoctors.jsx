@@ -15,7 +15,7 @@ const TopDoctors = () => {
             {doctors.slice(0,10).map((item)=>(
                 <div onClick={()=>{navigate(`/appointment/${item._id}`); scrollTo(0,0) }} className='border border-blue-200 
                 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] 
-                transition-all duration-500' key={item.name} to={`/doctors/${item._id}`}>
+                transition-all duration-500' aria-label={item.name} key={item.name} to={`/doctors/${item._id}`}>
                     <img className='bg-blue-200' src={item.image} alt="doctor picture" />
                     <div className='p-4'>
                         <div className='flex items-center text-sm gap-2 text-center text-green-500'>
@@ -29,7 +29,7 @@ const TopDoctors = () => {
             ))}
         </div>
         <button className='bg-[var(--primary)] text-white px-8 py-3 rounded-full font-light 
-        cursor-pointer hover:scale-105 transition-all duration-300' onClick={() => {navigate('/doctors'); scrollTo(0,0)}}>more</button>
+        cursor-pointer hover:scale-105 transition-all duration-300' aria-label='View more Doctors' onClick={() => {navigate('/doctors'); scrollTo(0,0)}}>more</button>
     </div>
   )
 }
