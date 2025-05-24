@@ -1,4 +1,4 @@
-## Healthcare Platform - Prescripto Healthcare
+w## Healthcare Platform - Prescripto Healthcare
 
 Overview
 A responsive React frontend for a healthcare platform that enables patients to schedule and manage appointments seamlessly.
@@ -10,7 +10,7 @@ Features
 - Routing & Navigation – Utilized React Router for seamless page transitions.
 
 Tech Stack -
-React, JavaScript, Tailwind CSS, Clerk, React Router
+React, JavaScript, Tailwind CSS, Clerk, React Router v7
 
 Setup
 1. Clone the repository
